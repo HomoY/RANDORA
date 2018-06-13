@@ -1,0 +1,123 @@
+#vasp.4.6.34 
+
+ SYSTEM = Au
+--------------------------------------------------------
+    NPAR = 4 
+ #  NWRITE =      2    #write-flag & timer
+--------------------------------------------------------
+# HSE06  
+----------------------------------------------------------  
+   PREC   = Medium    #medium, high low
+   ISTART =      0    #job   : 0-new  1-cont  2-samecut
+   ICHARG =      2    #charge: 1-file 2-atom 10-const
+#   NBANDS = 12
+#    ISPIN  =      2    #spin polarized calculation?
+#   LNONCOLLINEAR = F non collinear calculations
+#   LSORBIT =      F    spin-orbit coupling
+#   INIWAV =      1    electr: 0-lowe 1-rand  2-diag
+#   LASPH  =      F    aspherical Exc in radial PAW
+#   METAGGA=      F    non-selfconsistent MetaGGA calc.
+--------------------------------------------------------
+ Electronic Relaxation 1
+   LREAL  =      Auto   # Auto real-space projection
+   #IALGO  =     48    #algorithm
+ #  ALGO =  Fast      #Fast Normal
+   EDIFF  = 1.0E-5   #stopping-criterion for ELM
+   EDIFFG = -1E-01   stopping-criterion for IOM
+  # GGA = 91
+  # VOSKOWN=      1    #Vosko Wilk Nusair interpolation  
+   ENCUT = 500   #eV  
+#   ENINI  =  350.0     initial cutoff
+#   ENAUG  =  605.4 eV  augmentation charge cutoff
+#   NELMDL=  0     # of ELM steps 
+#   LCOMPAT=      F    compatible to vasp.4.4
+#   LREAL_COMPAT= F    compatible to vasp.4.5.1-3
+#   GGA_COMPAT  = T    GGA compatible to vasp.4.4-vasp.4.6
+#   LMAXPAW     = -100 max onsite density
+#   LMAXMIX     =   4  # max onsite mixed and CHGCAR, 4 for d, 6 for f
+#   ROPT   =   -0.00200  -0.00200  -0.00200
+#   LDIAG  =      T    sub-space diagonalisation
+#    AMIX     =   0.2 #;   BMIX     =  1.00
+#   AMIX_MAG =   1.60;   BMIX_MAG =  1.00
+#   AMIN     =   0.10
+#   WC   =   100.;   INIMIX=   1;  MIXPRE=   1
+--------------------------------------------------------
+i DOS related values:
+ #  EMIN   =  15.00
+ #  EMAX   = -20.00  energy-range for DOS
+   ISMEAR =   0   
+   SIGMA  =   0.05  #broadening in eV -4-tet -1-fermi 0-gaus
+                #*SEMICONDUCTORS, INSULATORS ISMEAR=-5,                 #large cell or single k-points use ISMEAR=0  with a small SIGMA=0.05.
+                #*relaxations in METALS, ISMEAR=1 or ISMEAR=2
+                #a SIGMA value (the entropy term should be less than 1 meV/atom)                #Mind: Avoid to use ISMEAR$>$0 for semiconductors and insulators                #*metals,  SIGMA= 0.2 (which is the default).
+                #For DOS and very accurate total energy calculations (no relaxation in metals) use the tetrahedron method ( ISMEAR=-5).
+--------------------------------------------------------
+ Ionic relaxation
+   NSW    =    500     number of steps for IOM
+   IBRION =      2    ionic relax: 0-MD 1-quasi-New 2-CG
+   POTIM  =   0.1  time-step for ionic-motion
+#   ISYM   =      0    0-nonsym 1-usesym 2-fastsym
+   ISIF   =  2        stress and relaxation
+#   NELECT =     264.0000    total number of electrons
+#   NUPDOWN=      -1.0000    fix difference up-down
+#   SMASS  =  -3.00    Nose mass-parameter (am)
+#   NBLOCK =      1;   KBLOCK =      1    inner block; outer block 
+#   NFREE  =      1    steps in history (QN), initial steepest desc. (CG)
+#   IWAVPR =     10    prediction:  0-non 1-charg 2-wave 3-comb
+#   LCORR  =      T    Harris-Foulkes like correction to forces
+#   TEIN   =    0.0    initial temperature
+#   TEBEG  =    0.0;   TEEND  =   0.0 temperature during run
+#   NPACO  =    256;   APACO  = 16.0  distance and # of slots for P.C.
+#   PSTRESS=    0.0 pullay stress
+#   RWIGS  =  -1.00 -1.00 -1.00
+--------------------------------------------------------
+ Write flags
+#   LWAVE  =      F    #write WAVECAR
+#   LCHARG =      F    #write CHGCAR
+#   LVTOT  =      F    #write LOCPOT, local potential
+#   LELF   =      F    #write electronic localiz. function (ELF)
+   LORBIT =     11    #0 simple, 1 ext, 2 COOP (PROOUT)
+#   LAECHG =      F
+--------------------------------------------------------
+
+       #############################
+       #  seldomly used parameters #
+       #############################
+
+--------------------------------------------------------
+ Dimension x,y,z
+   #NGX =    35 
+   #NGY =   35 
+   #NGZ =   35
+--------------------------------------------------------
+ Dipole corrections:
+ #  EFIELD =     0
+ #  IDIPOL =      3    1-x, 2-y, 3-z
+ #  LDIPOL =   .TURE.     correct potential
+ #  DIPOL  =  0.50 0.25 0.50 
+--------------------------------------------------------
+#LSDA + U
+     #MAGMOM = 4*1 4*1 2*0 2*0 
+
+  # LDAU = .T.
+  # LDAUPRINT = 1
+
+      #type is set to 
+  # LDAUTYPE =  2
+      #angular momentum on-site quantum-l  1:p 2:d 3:f, -1:no 
+  # LDAUL =    -1    2   -1
+
+      #U (eV)           for each species 
+  # LDAUU =   0.0  8.0  0.0
+      #J (eV)           for each species 
+ #  LDAUJ =   0.0  1.3  0.0
+--------------------------------------------------------
+ Intra band minimization:
+#   WEIMIN = 0.0000     energy-eigenvalue tresh-hold
+#   EBREAK =  0.16E-07  absolut break condition
+#   DEPER  =   0.30     relativ break condition
+#   TIME   =   0.10     timestep for ELM
+--------------------------------------------------------
+ Second variation
+#   LSECVAR=     F    do a second variation
+--------------------------------------------------------
