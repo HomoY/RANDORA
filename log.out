@@ -1,0 +1,9 @@
+LAMMPS (20 Apr 2018)
+OMP_NUM_THREADS environment is not set. Defaulting to 1 thread. (../comm.cpp:90)
+  using 1 OpenMP thread(s) per MPI task
+Reading data file ...
+  orthogonal box = (-20 -20 -20) to (20 20 20)
+  1 by 1 by 1 MPI processor grid
+  reading atoms ...
+ERROR: Incorrect atom format in data file (../atom.cpp:840)
+Last command:     read_data CdSe.dat
