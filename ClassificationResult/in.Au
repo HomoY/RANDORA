@@ -1,0 +1,28 @@
+# testing
+    units       metal
+    boundary           p p p
+    atom_style         atomic
+    read_data Au.dat
+
+    #pair_style sw
+    #pair_coeff * * CdTeZnSeHgS0.sw Cd Se
+         # pair_style         lj/cut/coul/long 10.0
+         #pair_coeff         1 1 0.0014477  1.98
+         # pair_coeff         1 2 0.0013634  3.61
+         # pair_coeff         2 2 0.001284  5.24
+    pair_style eam/fs
+    pair_coeff * * Au.eam.fs Au
+
+
+    neighbor           1.0 bin
+
+    #fix	1 all nve#/limit 0.001
+     minimize 0.0 1.0e-8 10000 100000
+     min_style cg
+
+    
+  dump 2 all custom 1 Au.xyz element x y z
+  # dump 2 all custom 1 pos.xyz id type x y z  
+  dump_modify 2 element Au
+
+    run 0
