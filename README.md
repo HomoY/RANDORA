@@ -1,7 +1,9 @@
 # RANDORA
 Structure classification, Physics, Random structure, PES prediction, structure comparison
-% software trees
+
+# software trees
  run.m Control all the part 
+ 
     1.  Parameter Part
         > ParameterInput.m --> Define the Parameter
 
